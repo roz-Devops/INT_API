@@ -2,8 +2,6 @@ import 'dotenv/config';
 import cors from 'cors';
 import bodyParser from 'body-parser';
 import express from 'express';
-
-
 let winston = require('winston');
 const mongoose= require('mongoose');
 const config= require('./config/database');
@@ -11,7 +9,6 @@ const index = express();
 index.use(cors());
 index.use(bodyParser.json());
 index.use(bodyParser.urlencoded({ extended: true }));
-
 //Connect to DB using config file
 const PORT= process.env.PORT;
 const IP= process.env.IP;

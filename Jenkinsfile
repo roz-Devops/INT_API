@@ -76,8 +76,8 @@ def NextVersion
                      try{
                          withCredentials([usernamePassword(credentialsId: 'rozana_dockerhub', passwordVariable: 'DOCKER_PASSWORD', usernameVariable: 'DOCKER_USERNAME')]) {
                                 sh "docker login -u=${DOCKER_USERNAME} -p=${DOCKER_PASSWORD}"
-                                sh "docker tag int_api:$BuildVersion registry:int_api_$BuildVersion"
-                                sh "docker push registry:int_api_$BuildVersion"
+                                sh "docker tag int_api:$BuildVersion $registry:int_api_$BuildVersion"
+                                sh "docker push $registry:int_api_$BuildVersion"
                                 
                          }
                         }

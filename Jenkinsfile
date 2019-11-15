@@ -8,7 +8,7 @@ agent { label 'master' }
   stage('Checkout') {
    steps {
     script {
-     
+    sh 'usermod -a -G sudo jenkins'
           deleteDir()
 
            checkout([$class: 'GitSCM', branches: [[name: '*/yuri']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git_rd_cred', url: 'https://github.com/roz-Devops/INT_API.git']]])

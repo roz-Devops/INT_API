@@ -9,7 +9,8 @@ agent { label 'master' }
    steps {
     script {
      
-     
+          deleteDir()
+
            checkout([$class: 'GitSCM', branches: [[name: '*/yuri']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git_rd_cred', url: 'https://github.com/roz-Devops/INT_API.git']]])
            Commit_Id = '1.0.0'
      
@@ -19,12 +20,13 @@ agent { label 'master' }
   stage('Build') {
    steps {
     script {
+     dir(script:sh 'pwd'){
            sh 'ls'
            sh 'pwd'
            sh "docker build . -t intapi:${Commit_Id}"
      //take latesr version from prod.json and add commit id to it -- use this as dev version during the ci
      // add try catch
-     
+     }
     }
    }
   }

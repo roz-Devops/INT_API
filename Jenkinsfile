@@ -19,11 +19,10 @@ agent { label 'master' }
   stage('Build') {
    steps {
     script {
-      deleteDir()
       dir ('INT_API') {
            sh 'ls'
            sh 'pwd'
-           sh "docker build . -t intapi:${Commit_Id}"
+           sh "sudo docker build . -t intapi:${Commit_Id}"
      //take latesr version from prod.json and add commit id to it -- use this as dev version during the ci
      // add try catch
      }
@@ -33,8 +32,8 @@ agent { label 'master' }
   stage('Save to docker image to repo') {
    steps {
     script {
-     sh "mkdir -p ${storage}/dev"
-     sh "docker save intapi:${Commit_Id} > ${storage}/dev/intapi_${Commit_Id}.tar"
+     sh "sudo mkdir -p ${storage}/dev"
+     sh "sudo docker save intapi:${Commit_Id} > ${storage}/dev/intapi_${Commit_Id}.tar"
      }
     }
    }

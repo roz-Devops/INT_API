@@ -20,10 +20,9 @@ agent { label 'master' }
    steps {
     script {
      dir('./'){
-         
+           sh 'pwd'
            sh 'chmod 777 Dockerfile'
            sh 'ls -l'
-           sh 'pwd'
            sh "docker build . -t intapi:${Commit_Id}"
      //take latesr version from prod.json and add commit id to it -- use this as dev version during the ci
      // add try catch

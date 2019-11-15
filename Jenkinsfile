@@ -20,6 +20,7 @@ agent { label 'master' }
    steps {
     script {
      dir('./'){
+           sh 'll'
            sh 'chmod 777 Dockerfile'
            sh 'ls'
            sh 'pwd'

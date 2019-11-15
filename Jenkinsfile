@@ -19,14 +19,12 @@ agent { label 'master' }
   stage('Build') {
    steps {
     script {
-      deleteDir()
-      dir ('./int_api/INT_API/') {
            sh 'ls'
            sh 'pwd'
            sh "docker build . -t intapi:${Commit_Id}"
      //take latesr version from prod.json and add commit id to it -- use this as dev version during the ci
      // add try catch
-     }
+     
     }
    }
   }

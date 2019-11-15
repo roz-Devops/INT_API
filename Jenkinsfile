@@ -20,6 +20,7 @@ agent { label 'master' }
    steps {
     script {
      dir('./docker'){
+      //slave needed
            sh 'pwd'
            sh 'chmod 777 Dockerfile'
            sh 'ls -l'

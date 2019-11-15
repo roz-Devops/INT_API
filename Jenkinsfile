@@ -19,6 +19,7 @@ agent { label 'master' }
   stage('Build') {
    steps {
     script {
+      deleteDir()
       dir ('/INT_API/') {
            sh 'ls'
            sh 'pwd'

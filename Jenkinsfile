@@ -3,7 +3,7 @@ pipeline {
 options {
  timeout(time: 30, unit: 'MINUTES')
 }
-agent { label 'docker' }
+agent { label 'master' }
  stages {
   stage('Checkout') {
    steps {

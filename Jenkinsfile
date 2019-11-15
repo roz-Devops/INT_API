@@ -8,17 +8,25 @@ agent { label 'master' }
   stage('Checkout') {
    steps {
     script {
-     checkout([$class: 'GitSCM', branches: [[name: '*/yuri']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git_rd_cred', url: 'https://github.com/roz-Devops/INT_API.git']]])
-      Commit_Id = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
+      deleteDir()
+      dir ('INT_API') {
+           checkout([$class: 'GitSCM', branches: [[name: '*/yuri']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git_rd_cred', url: 'https://github.com/roz-Devops/INT_API.git']]])
+           Commit_Id = 1.0.0
+     }
     }
    }
   }
   stage('Build') {
    steps {
     script {
-     sh "docker build . -t intapi:${Commit_Id}"
+      deleteDir()
+      dir ('INT_API') {
+           sh 'ls'
+           sh 'pwd'
+           sh "docker build . -t intapi:${Commit_Id}"
      //take latesr version from prod.json and add commit id to it -- use this as dev version during the ci
      // add try catch
+     }
     }
    }
   }

@@ -19,7 +19,7 @@ agent { label 'master' }
   stage('Build') {
    steps {
     script {
-      dir ('INT_API') {
+      dir ('INT_API/') {
            sh 'ls'
            sh 'pwd'
            sh "docker build . -t intapi:${Commit_Id}"

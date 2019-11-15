@@ -22,7 +22,7 @@ agent { label 'master' }
      dir('./'){
            sh 'ls'
            sh 'pwd'
-           sh "sudo docker build . -t intapi:${Commit_Id}"
+           sh "docker build . -t intapi:${Commit_Id}"
      //take latesr version from prod.json and add commit id to it -- use this as dev version during the ci
      // add try catch
      }

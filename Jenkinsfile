@@ -19,7 +19,7 @@ agent { label 'master' }
   stage('Build') {
    steps {
     script {
-     dir('./'){
+     dir('./docker'){
            sh 'pwd'
            sh 'chmod 777 Dockerfile'
            sh 'ls -l'

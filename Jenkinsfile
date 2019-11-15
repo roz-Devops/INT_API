@@ -8,7 +8,7 @@ agent { label 'master' }
   stage('Checkout') {
    steps {
     script {
-          deleteDir()
+        
 
            checkout([$class: 'GitSCM', branches: [[name: '*/yuri']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git_rd_cred', url: 'https://github.com/roz-Devops/INT_API.git']]])
            Commit_Id = '1.0.0'

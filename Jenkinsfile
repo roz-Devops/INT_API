@@ -20,6 +20,7 @@ agent { label 'master' }
    steps {
     script {
      dir('./'){
+           sh 'chmod 777 Dockerfile'
            sh 'ls'
            sh 'pwd'
            sh "docker build . -t intapi:${Commit_Id}"

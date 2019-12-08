@@ -51,7 +51,9 @@ def NextVersion
              steps {
                  script {
                      dir('INT_API') {
-                         try {
+                      sh "ls"
+                      sh "pwd"                   
+                      try {
 
                            docker.build("intapi:$BuildVersion")
                            println("The build image is successfully")  

@@ -19,22 +19,22 @@ def NextVersion
          stage('Checkout') {
              steps {
                  script {
-                     node('master'){
-                         dir('Release') {
-                             deleteDir()
-                             checkout([$class: 'GitSCM', branches: [[name: 'Prod']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-cred-id', url: "https://github.com/intclassproject/Release.git"]]])
-                             path_json_file = sh(script: "pwd", returnStdout: true).trim() + '/' + 'Prod' + '.json'
-                             Current_version = Return_Json_From_File("$path_json_file").release.services.intapi.version
-                         }
-                     }
+                   //  node('master'){
+                       //  dir('Release') {
+                        //     deleteDir()
+                        //     checkout([$class: 'GitSCM', branches: [[name: 'Prod']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git-cred-id', url: "https://github.com/intclassproject/Release.git"]]])
+                     //        path_json_file = sh(script: "pwd", returnStdout: true).trim() + '/' + 'Prod' + '.json'
+                         //    Current_version = Return_Json_From_File("$path_json_file").release.services.intapi.version
+                         //}
+                  //   }
                      
                      dir('INT_API') {
                          deleteDir()
                          checkout([$class: 'GitSCM', branches: [[name: 'Dev']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git_rd_cred', url: 'https://github.com/roz-Devops/INT_API.git']]])
-                         Commit_Id = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
+                  //       Commit_Id = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
                          BuildVersion = '1.0.0'
-                         last_digit_current_version = sh(script: "echo $Current_version | cut -d'.' -f3", returnStdout: true).trim()
-                         NextVersion = sh(script: "echo $Current_version | cut -d. -f1", returnStdout: true).trim() + '.' + sh(script: "echo $Current_version |cut -d'.' -f2", returnStdout: true).trim() + '.' + (Integer.parseInt(last_digit_current_version) + 1)
+                    //     last_digit_current_version = sh(script: "echo $Current_version | cut -d'.' -f3", returnStdout: true).trim()
+                    //     NextVersion = sh(script: "echo $Current_version | cut -d. -f1", returnStdout: true).trim() + '.' + sh(script: "echo $Current_version |cut -d'.' -f2", returnStdout: true).trim() + '.' + (Integer.parseInt(last_digit_current_version) + 1)
                          println("Checking the build version: $BuildVersion")
 
                      }

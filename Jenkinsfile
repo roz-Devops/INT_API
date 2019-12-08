@@ -14,7 +14,7 @@ def NextVersion
     registryCredential = 'dockerhub'
     //dockerImage = ''
     }
-     agent { label 'slave' }
+     agent { label 'jenny_slave' }
      stages {
          stage('Checkout') {
              steps {
@@ -32,7 +32,7 @@ def NextVersion
                          deleteDir()
                          checkout([$class: 'GitSCM', branches: [[name: 'Dev']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'git_rd_cred', url: 'https://github.com/roz-Devops/INT_API.git']]])
                          Commit_Id = sh(script: "git rev-parse --short HEAD", returnStdout: true).trim()
-                         BuildVersion = Current_version + '_' + Commit_Id
+                         BuildVersion = '1.0.0'
                          last_digit_current_version = sh(script: "echo $Current_version | cut -d'.' -f3", returnStdout: true).trim()
                          NextVersion = sh(script: "echo $Current_version | cut -d. -f1", returnStdout: true).trim() + '.' + sh(script: "echo $Current_version |cut -d'.' -f2", returnStdout: true).trim() + '.' + (Integer.parseInt(last_digit_current_version) + 1)
                          println("Checking the build version: $BuildVersion")

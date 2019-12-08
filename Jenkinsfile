@@ -55,7 +55,8 @@ def NextVersion
                       sh "pwd"                   
                       try {
 
-                           docker.build("intapi:$BuildVersion")
+                          //docker.build("intapi:$BuildVersion")
+                       sh"sudo docker build . -t intapi:$BuildVersion"
                            println("The build image is successfully")  
 
                          }

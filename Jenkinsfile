@@ -54,8 +54,8 @@ def NextVersion
                       sh "ls"
                       sh "pwd"                   
                       try {
-                       sh "sudo usermod -a -G docker ubuntu"
                           //docker.build("intapi:$BuildVersion")
+                       sh "sudo chmod 777 Dockerfile"
                        sh "sudo docker build -t intapi:$BuildVersion ."
                            println("The build image is successfully")  
 

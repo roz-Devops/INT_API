@@ -56,7 +56,7 @@ def NextVersion
                       try {
                           //docker.build("intapi:$BuildVersion")
                   //     sh "sudo chmod 777 Dockerfile"
-                 //      sh "sudo docker build -t intapi:$BuildVersion ."
+                         sh "sudo docker build -t intapi:$BuildVersion ."
                            println("The build image is successfully")  
 
                          }
